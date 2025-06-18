@@ -99,10 +99,15 @@ function App() {
             
             <div className="output-container">
               <JsonOutput jsonOutput={jsonOutput} />
-            </div>
-          </div>
+            </div>          </div>
         )}
       </main>
+      
+      <footer className="App-footer">
+        <p>
+          Built by <a href="https://github.com/rsgel" target="_blank" rel="noopener noreferrer" className="footer-link">Rigel</a> and GitHub Copilot
+        </p>
+      </footer>
     </div>
   );
 }

@@ -76,6 +76,33 @@ body {
   text-decoration: none;
 }
 
+/* Footer Styles */
+.App-footer {
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.App-footer p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.footer-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #5a67d8;
+  text-decoration: underline;
+}
+
 /* Main Content */
 .App-main {
   flex: 1;
@@ -445,9 +472,16 @@ body {
   .App-header h1 {
     font-size: 2rem;
   }
-  
-  .header-info p {
+    .header-info p {
     font-size: 0.9rem;
+  }
+  
+  .App-footer {
+    padding: 1rem;
+  }
+  
+  .App-footer p {
+    font-size: 0.8rem;
   }
   
   .fault-selector,

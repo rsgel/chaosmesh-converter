@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FormField = ({ name, config, value, onChange, path = [] }) => {
+const FormField = ({ name, config, value, onChange, path = [], hideLabel = false, hideDescription = false }) => {
   const [arrayValues, setArrayValues] = useState(
     Array.isArray(value) ? value : ['']
   );
@@ -92,9 +92,7 @@ const FormField = ({ name, config, value, onChange, path = [] }) => {
           </button>
         </div>
       );
-    }
-
-    if (config.type === 'object' && config.properties) {
+    }    if (config.type === 'object' && config.properties) {
       return (
         <div className="object-field">
           <div className="object-fields">
@@ -103,14 +101,17 @@ const FormField = ({ name, config, value, onChange, path = [] }) => {
                 <label htmlFor={`${fieldId}.${key}`} className="form-label">
                   {key}
                   {subConfig.required && <span className="required-asterisk">*</span>}
-                </label>
-                <FormField
-                  name={key}
-                  config={subConfig}
-                  value={value?.[key]}
-                  onChange={(newValue) => handleObjectChange(key, newValue)}
-                  path={[...path, name]}
-                />
+                </label>                <div className="nested-field-content">
+                  <FormField
+                    name={key}
+                    config={subConfig}
+                    value={value?.[key]}
+                    onChange={(newValue) => handleObjectChange(key, newValue)}
+                    path={[...path, name]}
+                    hideLabel={true}
+                    hideDescription={true}
+                  />
+                </div>
                 {subConfig.description && (
                   <small className="field-description">{subConfig.description}</small>
                 )}
@@ -206,16 +207,16 @@ const FormField = ({ name, config, value, onChange, path = [] }) => {
         placeholder={config.description || `Enter ${name}`}
       />
     );
-  };
-
-  return (
+  };  return (
     <div className="form-group">
-      <label htmlFor={path.join('.') + '.' + name} className="form-label">
-        {name}
-        {config.required && <span className="required-asterisk">*</span>}
-      </label>
+      {!hideLabel && (
+        <label htmlFor={path.join('.') + '.' + name} className="form-label">
+          {name}
+          {config.required && <span className="required-asterisk">*</span>}
+        </label>
+      )}
       {renderInput()}
-      {config.description && (
+      {!hideDescription && config.description && (
         <small className="field-description">{config.description}</small>
       )}
     </div>
