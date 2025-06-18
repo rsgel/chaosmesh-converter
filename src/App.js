@@ -50,15 +50,13 @@ function App() {
 
   return (
     <div className="App">      <header className="App-header">
-        <h1>Chaos Mesh Configuration Builder</h1>
-        <p>Build Chaos Mesh fault configurations with an easy-to-use interface for chaos engineering experiments</p>
+        <h1>Chaos Mesh JSON Builder</h1>
         <div className="header-info">
           <p>
-            Create JSON configurations for <a href="https://github.com/chaos-mesh/chaos-mesh" target="_blank" rel="noopener noreferrer" className="header-link">Chaos Mesh</a> fault injections. 
-            Perfect for testing Kubernetes applications resilience and integrating with Azure Chaos Studio AKS experiments.
+            👋 When testing your AKS apps with Azure Chaos Studio + Chaos Mesh, this tool helps you form the jsonSpec for <a href="https://github.com/chaos-mesh/chaos-mesh" target="_blank" rel="noopener noreferrer" className="header-link">Chaos Mesh</a> fault injection.
           </p>
           <p>
-            <strong>How to use:</strong> Select a fault type, configure parameters, then copy the generated JSON for use in your chaos engineering workflows or 
+            <strong>ℹ️ How to use:</strong> Select a fault, configure parameters, then copy the minified JSON to use in  
             <a href="https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-tutorial-aks-portal" target="_blank" rel="noopener noreferrer" className="header-link"> Azure Chaos Studio AKS experiments</a>.
           </p>
         </div>
@@ -66,13 +64,16 @@ function App() {
       
       <main className="App-main">
         <div className="fault-selector">
-          <h2>Select Fault Type</h2>
+          <h2>Select Fault</h2>
+          <p class='field-description'>Choose from the 8 Chaos Mesh faults available in <a href="https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-fault-library#azure-kubernetes-service" target="_blank" rel="noopener noreferrer">Azure Chaos Studio</a>
+          <br></br>
+          </p>
           <select 
             value={selectedFault} 
             onChange={(e) => handleFaultChange(e.target.value)}
             className="fault-dropdown"
           >
-            <option value="">-- Select a Fault Type --</option>
+            <option value="">-- Select a Fault --</option>
             {Object.entries(chaosSchemas).map(([key, schema]) => (
               <option key={key} value={key}>
                 {schema.title}
@@ -105,7 +106,7 @@ function App() {
       
       <footer className="App-footer">
         <p>
-          Built by <a href="https://github.com/rsgel" target="_blank" rel="noopener noreferrer" className="footer-link">Rigel</a> and GitHub Copilot
+          Built by <a href="https://github.com/rsgel/chaosmesh-converter" target="_blank" rel="noopener noreferrer" className="footer-link">Rigel</a> and GitHub Copilot (personal project)
         </p>
       </footer>
     </div>

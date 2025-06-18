@@ -1,20 +1,18 @@
 # Chaos Mesh Configuration Builder
 
-A React-based web application for building [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) fault configurations with an intuitive user interface. This tool helps you create JSON configurations for various Chaos Mesh fault types without having to manually write YAML or JSON, making it perfect for chaos engineering experiments in Kubernetes environments.
+When [targeting Azure Kubernetes Service resources with Azure Chaos Studio](https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-tutorial-aks-portal), it's a challenge to form the `jsonSpec` parameters correctly -- you need to manually construct the JSON, minify it, and remove certain fields. This is error-prone, and requires manual effort.
+
+With this React-based web application, you can build a [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) fault `jsonSpec` much more easily - in a user interface that does all the heavy lifting! This tool helps you create JSON configurations for various Chaos Mesh fault types without having to manually write YAML or JSON, making it perfect for chaos engineering experiments in Kubernetes environments.
 
 ## About Chaos Mesh
 
 [Chaos Mesh](https://github.com/chaos-mesh/chaos-mesh) is a cloud-native chaos engineering platform that orchestrates chaos experiments on Kubernetes environments. It helps you test the resilience of your system by simulating various types of failures.
 
-## Azure Chaos Studio Integration
-
-This tool generates configurations that can be used with Azure Chaos Studio's AKS (Azure Kubernetes Service) fault experiments. The generated JSON can be integrated into Azure Chaos Studio workflows for comprehensive chaos engineering testing. 
-
-For detailed guidance on setting up AKS fault experiments in Azure Chaos Studio, see the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-tutorial-aks-portal).
+Azure Chaos Studio can run Chaos Mesh experiments, helping you simplify your fault injection across your resources in Azure. You can use Azure constructs (i.e. RBAC) to ensure fault injection is run safely and in an auditable way.
 
 ## Features
 
-- **Multiple Fault Types**: Support for 8 major Chaos Mesh fault types:
+- **Multiple Fault Types**: Support for 8 major Chaos Mesh fault types, aligning with what Chaos Studio supports:
   - DNSChaos - Simulate DNS failures
   - HTTPChaos - Simulate HTTP request/response failures  
   - IOChaos - Simulate file system I/O failures
@@ -31,32 +29,7 @@ For detailed guidance on setting up AKS fault experiments in Azure Chaos Studio,
 - **Responsive Design**: Works on desktop, tablet, and mobile devices
 - **Copy to Clipboard**: Easy copying of generated JSON configurations
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (version 14 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/chaosmesh-converter.git
-cd chaosmesh-converter
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm start
-```
-
-4. Open your browser and navigate to `http://localhost:3000`
+Read more about the [Chaos Mesh fault details](https://chaos-mesh.org/docs/simulate-pod-chaos-on-kubernetes/).
 
 ## Usage
 
@@ -144,7 +117,34 @@ The application uses TypeScript-based schemas to define the structure and valida
 - Conditional field display logic
 - Helpful descriptions and examples
 
-## Building for Production
+## Developing
+
+### Prerequisites
+
+- Node.js (version 14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/chaosmesh-converter.git
+cd chaosmesh-converter
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+4. Open your browser and navigate to `http://localhost:3000`
+
+### Building for Production
 
 To create a production build:
 
@@ -154,7 +154,7 @@ npm run build
 
 The build artifacts will be stored in the `build/` directory.
 
-## Deployment
+### Deployment
 
 This application can be deployed to any static hosting service:
 
@@ -170,7 +170,7 @@ For GitHub Pages deployment:
 npm run deploy
 ```
 
-## Contributing
+### Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -178,36 +178,12 @@ npm run deploy
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## Acknowledgments
+
+- Built for users of Azure Chaos Studio + Chaos Mesh, uses parameter schema from Chaos Mesh project: [index.schemas.ts](https://github.com/chaos-mesh/chaos-mesh/blob/266010dd54160b018046e4a4daf6c92254524406/ui/app/src/openapi/index.schemas.ts)
+- Inspired by the need for easier configuration of jsonSpec parameters when using Azure Chaos Studio + Chaos Mesh for Azure Kubernetes Service faults
+- This is a personal project for learning purposes, **not** an official Microsoft, Azure, Chaos Studio, or Chaos Mesh tool
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Built for the Chaos Mesh community
-- Inspired by the need for easier chaos engineering configuration
-- Uses React 19 and modern web technologies
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

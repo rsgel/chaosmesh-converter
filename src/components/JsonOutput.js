@@ -42,7 +42,7 @@ const JsonOutput = ({ jsonOutput }) => {
           <h4>Minified JSON</h4>
           <div className="output-box minified">
             <pre className="json-content">
-              {jsonOutput || 'Configure the form above to see the JSON output'}
+              {jsonOutput || 'Configure a fault to see the JSON output'}
             </pre>
           </div>
         </div>
@@ -51,7 +51,7 @@ const JsonOutput = ({ jsonOutput }) => {
           <h4>Formatted JSON</h4>
           <div className="output-box formatted">
             <pre className="json-content">
-              {jsonOutput ? formatJson(jsonOutput) : 'Configure the form above to see the JSON output'}
+              {jsonOutput ? formatJson(jsonOutput) : 'Configure a fault to see the JSON output'}
             </pre>
           </div>
         </div>
