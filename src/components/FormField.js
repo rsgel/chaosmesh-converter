@@ -5,6 +5,25 @@ const FormField = ({ name, config, value, onChange, path = [], hideLabel = false
     Array.isArray(value) ? value : ['']
   );
 
+  const isSelectorEmpty = (selectorValue) => {
+    if (!selectorValue || Object.keys(selectorValue).length === 0) {
+      return true;
+    }
+    
+    const hasNamespaces = selectorValue.namespaces && 
+                         Array.isArray(selectorValue.namespaces) && 
+                         selectorValue.namespaces.some(ns => ns.trim() !== '');
+    
+    const hasLabelSelectors = selectorValue.labelSelectors && 
+                             typeof selectorValue.labelSelectors === 'object' &&
+                             Object.keys(selectorValue.labelSelectors).some(key => 
+                               key.trim() !== '' && selectorValue.labelSelectors[key] != null && 
+                               selectorValue.labelSelectors[key].toString().trim() !== ''
+                             );
+    
+    return !hasNamespaces && !hasLabelSelectors;
+  };
+
   const handleInputChange = (newValue) => {
     onChange(newValue);
   };
@@ -93,8 +112,12 @@ const FormField = ({ name, config, value, onChange, path = [], hideLabel = false
         </div>
       );
     }    if (config.type === 'object' && config.properties) {
+      const isRequired = config.required;
+      const isEmpty = name === 'selector' && isRequired ? isSelectorEmpty(value) : false;
+      const validationClass = isEmpty ? 'required-empty' : '';
+      
       return (
-        <div className="object-field">
+        <div className={`object-field ${validationClass}`}>
           <div className="object-fields">
             {Object.entries(config.properties).map(([key, subConfig]) => (
               <div key={key} className="form-group nested">

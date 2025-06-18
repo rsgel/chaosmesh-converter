@@ -241,6 +241,11 @@ body {
   border-color: #dc2626;
 }
 
+.object-field.required-empty {
+  border-color: #dc2626;
+  border-width: 2px;
+}
+
 .field-description {
   display: block;
   margin-top: 0.5rem;
