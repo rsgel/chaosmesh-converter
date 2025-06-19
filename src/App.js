@@ -16,16 +16,16 @@ function App() {
   }, []);
   const handleFormChange = useCallback((data) => {
     setFormData(data);
-    
+
     // Helper function to remove empty values from the object
     const removeEmptyValues = (obj) => {
       const cleaned = {};
-      
+
       for (const [key, value] of Object.entries(obj)) {
         if (value === null || value === undefined || value === '') {
           continue;
         }
-        
+
         if (Array.isArray(value)) {
           const filteredArray = value.filter(item => item !== null && item !== undefined && item !== '');
           if (filteredArray.length > 0) {
@@ -40,7 +40,7 @@ function App() {
           cleaned[key] = value;
         }
       }
-      
+
       return cleaned;
     };
       // Generate minified JSON output
@@ -56,20 +56,20 @@ function App() {
             👋 When testing your AKS apps with Azure Chaos Studio + Chaos Mesh, this tool helps you form the jsonSpec for <a href="https://github.com/chaos-mesh/chaos-mesh" target="_blank" rel="noopener noreferrer" className="header-link">Chaos Mesh</a> fault injection.
           </p>
           <p>
-            <strong>ℹ️ How to use:</strong> Select a fault, configure parameters, then copy the minified JSON to use in  
+            <strong>ℹ️ How to use:</strong> Select a fault, configure parameters, then copy the minified JSON to use in
             <a href="https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-tutorial-aks-portal" target="_blank" rel="noopener noreferrer" className="header-link"> Azure Chaos Studio AKS experiments</a>.
           </p>
         </div>
       </header>
-      
+
       <main className="App-main">
         <div className="fault-selector">
           <h2>Select Fault</h2>
           <p className="field-description">Choose from the 8 Chaos Mesh faults available in <a href="https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-fault-library#azure-kubernetes-service" target="_blank" rel="noopener noreferrer">Azure Chaos Studio</a>
           <br />
           </p>
-          <select 
-            value={selectedFault} 
+          <select
+            value={selectedFault}
             onChange={(e) => handleFaultChange(e.target.value)}
             className="fault-dropdown"
           >
@@ -80,7 +80,7 @@ function App() {
               </option>
             ))}
           </select>
-          
+
           {selectedFault && (
             <div className="fault-description">
               <p>{chaosSchemas[selectedFault].description}</p>
@@ -91,19 +91,19 @@ function App() {
         {selectedFault && (
           <div className="content-container">
             <div className="form-container">
-              <ChaosForm 
-                schema={chaosSchemas[selectedFault]} 
+              <ChaosForm
+                schema={chaosSchemas[selectedFault]}
                 onChange={handleFormChange}
                 formData={formData}
               />
             </div>
-            
+
             <div className="output-container">
               <JsonOutput jsonOutput={jsonOutput} />
             </div>          </div>
         )}
       </main>
-      
+
       <footer className="App-footer">
         <p>
           Built by <a href="https://github.com/rsgel/chaosmesh-converter" target="_blank" rel="noopener noreferrer" className="footer-link">Rigel</a> and GitHub Copilot (personal project)

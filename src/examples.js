@@ -12,7 +12,7 @@ export const exampleConfigs = {
       correlation: "25"
     }
   },
-  
+
   PodChaos: {
     action: "pod-kill",
     mode: "fixed",
@@ -24,7 +24,7 @@ export const exampleConfigs = {
       }
     }
   },
-  
+
   StressChaos: {
     mode: "one",
     selector: {
