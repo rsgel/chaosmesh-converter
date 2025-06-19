@@ -65,8 +65,8 @@ function App() {
       <main className="App-main">
         <div className="fault-selector">
           <h2>Select Fault</h2>
-          <p class='field-description'>Choose from the 8 Chaos Mesh faults available in <a href="https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-fault-library#azure-kubernetes-service" target="_blank" rel="noopener noreferrer">Azure Chaos Studio</a>
-          <br></br>
+          <p className="field-description">Choose from the 8 Chaos Mesh faults available in <a href="https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-fault-library#azure-kubernetes-service" target="_blank" rel="noopener noreferrer">Azure Chaos Studio</a>
+          <br />
           </p>
           <select 
             value={selectedFault} 
